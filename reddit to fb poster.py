@@ -40,7 +40,7 @@ def downloadImage(imageUrl, wallMessage):
             newWallMessage2 = newWallMessage.replace("[OC]", "")
             newWallMessage3 = newWallMessage2.split('[x-post')[0]
             newWallMessage4 = newWallMessage3.split('x-post')[0]
-            newWallMessage5 = wallMessage4.replace("&amp;", "&")
+            newWallMessage5 = wallMessage4.replace("[infographic]", "&")
             print "Image URL: " + imageUrl
             print "Image Title: " + newWallMessage5
             print divider
