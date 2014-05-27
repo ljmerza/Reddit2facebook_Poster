@@ -25,21 +25,28 @@ graph = facebook.GraphAPI(fbKey)
 imgurUrlPattern = re.compile(r'(http://i.imgur.com/(.*))(\?.*)?')
 divider = "---------------------------------------------------------------------"
 
-print "reddit to facebook poster version 0.6"
+print "reddit to facebook poster version 0.7"
 print divider
+
+if not os.path.exists('storage.txt'):
+    open('storage.txt', 'w').close()
 
 def downloadImage(imageUrl, wallMessage):
     global array, counterPosts, numberOfPosts
     if not(imageUrl in array):
         counterPosts = counterPosts+1
-        if counterPosts > numberOfPosts: 
+        if counterPosts > numberOfPosts:
             newWallMessage = wallMessage.replace("&amp;", "&")
-            newWallMessage2 = wallMessage.replace("[OC]", "")
+            newWallMessage2 = newWallMessage.replace("[OC]", "")
+            newWallMessage3 = newWallMessage2.split('[x-post')[0]
+            newWallMessage4 = newWallMessage3.split('x-post')[0]
+            newWallMessage5 = wallMessage4.replace("&amp;", "&")
             print "Image URL: " + imageUrl
-            print "Image Title: " + newWallMessage2
+            print "Image Title: " + newWallMessage5
             print divider
-            graph.put_object("me", "feed", link=imageUrl, picture=imageUrl, message=newWallMessage2)
+            graph.put_object("me", "feed", link=imageUrl, picture=newWallMessage5, message=newWallMessage2)
             array.append(imageUrl)
+
             with open('storage.txt', 'w') as fileText:
                 for item in array:
                     fileText.write("%s\n" % item)
