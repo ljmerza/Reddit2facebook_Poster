@@ -1,4 +1,4 @@
-REDDIT TO FACEBOOK POSTER VERSION 0.6
+REDDIT TO FACEBOOK POSTER VERSION 0.75
 
 This python program will search each reddit you specify in the 'targetsubreddits' list and find the highest scoring post in the past week of all subreddits searched. It will then check to see if that post is a single image file from imgur or a single png/jpg and if it is, attempt to post it onto the facebook account with the given kiey in the 'fbkey' variable.
 
