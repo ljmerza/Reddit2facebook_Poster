@@ -10,11 +10,11 @@ import collections
 
 # Values to change
 minScore = 80 # the minimum score needed to post
-targetSubreddits = ['infographics', 'dataisbeautiful', 'infographic'] # the subreddits to search
+targetSubreddits = ['', '', ''] # the subreddits to search
 # facebook token key
-fbKey = 'CAACEdEose0cBAPpOnFjV8DL64ucNHQACwzMHey5yrF9CZBf3BMfOmUOr6rb1KrvyLHyrPfjCEcPDXsJS2SeZCpnUNABarTdeZA02oCuAaHAYRdj7UQNZAbxET9YBb173Q1Ej3ZCDati1FUW1XyaSEP0QaodOhCZAAXymuKunvMAqvpnmDA79xURH2FScYt9S0ZD'
+fbKey = ''
 numberOfPosts = 1 # number of posts to make on facebook
-botName = 'fb2redditinfo' # name of bot for reddit
+botName = '' # name of bot for reddit
 
 array = []
 counterPosts = 0
@@ -25,7 +25,7 @@ graph = facebook.GraphAPI(fbKey)
 imgurUrlPattern = re.compile(r'(http://i.imgur.com/(.*))(\?.*)?')
 divider = "---------------------------------------------------------------------"
 
-print "reddit to facebook poster version 0.75"
+print "reddit to facebook poster version 0.76"
 print divider
 
 if not os.path.exists('storage.txt'):
@@ -40,7 +40,7 @@ def downloadImage(imageUrl, wallMessage):
             newWallMessage2 = newWallMessage.replace("[OC]", "")
             newWallMessage3 = newWallMessage2.split('[x-post')[0]
             newWallMessage4 = newWallMessage3.split('x-post')[0]
-            newWallMessage5 = newWallMessage4.replace("[infographic]", "&")
+            newWallMessage5 = newWallMessage4.replace("[infographic]", "&").encode('ascii', 'ignore')
             print "Image URL: " + imageUrl
             print "Image Title: " + newWallMessage5
             print divider
