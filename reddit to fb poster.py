@@ -36,15 +36,11 @@ def downloadImage(imageUrl, wallMessage):
     if not(imageUrl in array):
         counterPosts = counterPosts+1
         if counterPosts > numberOfPosts:
-            newWallMessage = wallMessage.replace("&amp;", "&")
-            newWallMessage2 = newWallMessage.replace("[OC]", "")
-            newWallMessage3 = newWallMessage2.split('[x-post')[0]
-            newWallMessage4 = newWallMessage3.split('x-post')[0]
-            newWallMessage5 = newWallMessage4.replace("[infographic]", "&").encode('ascii', 'ignore')
+            newWallMessage = wallMessage.replace("&amp;", "&").replace("[OC]", "").split('[x-post')[0].split('x-post')[0].replace("[infographic]", "&").encode('ascii', 'ignore')
             print "Image URL: " + imageUrl
-            print "Image Title: " + newWallMessage5
+            print "Image Title: " + newWallMessage
             print divider
-            graph.put_object("me", "feed", link=imageUrl, picture=imageUrl, message=newWallMessage5)
+            graph.put_object("me", "feed", link=imageUrl, picture=imageUrl, message=newWallMessage)
             array.append(imageUrl)
 
             with open('storage.txt', 'w') as fileText:
